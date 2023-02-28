@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
-import { withIronSessionApiRoute } from "iron-session/next";
 import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
@@ -20,4 +19,9 @@ async function handler(
   });
 }
 
-export default withApiSession(withHandler("GET", handler));
+export default withApiSession(
+  withHandler({
+    method: "GET",
+    handler,
+  })
+);
